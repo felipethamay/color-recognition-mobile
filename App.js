@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import LoadingScreen from './src/ui/screens/loading/LoadingScreen';
+import HomeScreen from './src/ui/screens/home/HomeScreen';
+import RegisterPatientScreenForm from './src/ui/screens/patient/register/RegisterPatientFormScreen';
+import RegisterPatientScreenList from './src/ui/screens/patient/list/RegisterPatientScreenList';
+import CameraScreen from './src/ui/screens/camera/CameraScreen';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Loading">
+        <Stack.Screen name="Loading" component={LoadingScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Form" component={RegisterPatientScreenForm} />
+        <Stack.Screen name="List" component={RegisterPatientScreenList} />
+        <Stack.Screen name="Camera" component={CameraScreen} options={{ title: '' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
