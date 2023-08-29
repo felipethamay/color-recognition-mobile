@@ -22,13 +22,11 @@ const RegisterPatientListScreen = () => {
 
   const renderItem = ({ item }) => (
     <View>
-      {/* Render details of each item */}
       <Text>{item.nome}</Text>
-      {/* Render other fields */}
     </View>
   );
 
-  const keyExtractor = (item) => item.id ? item.id.toString() : '';
+  const keyExtractor = (item, index) => (item.id ? item.id.toString() : index.toString());
 
   return (
     <View>

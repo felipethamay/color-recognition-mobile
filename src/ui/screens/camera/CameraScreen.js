@@ -1,14 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { View, Alert, Text, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
-import RegisterPatientScreenList from '../patient/list/RegisterPatientScreenList';
 import * as MediaLibrary from 'expo-media-library';
 import { styles } from './CameraScreen.style';
 
 const CameraScreen = () => {
-  const [hasCameraPermission, setHasCameraPermission] = useState<boolean | null>(null);
-  const [showCamera, setShowCamera] = useState(false);
-  const cameraRef = useRef<Camera | null>(null);
+  const [hasCameraPermission, setHasCameraPermission] = useState(null);
+  const cameraRef = useRef(null);
 
   useEffect(() => {
     const getCameraPermission = async () => {
@@ -24,21 +22,21 @@ const CameraScreen = () => {
       Alert.alert('Permissão necessária', 'A câmera não está disponível.');
       return;
     }
-
+  
     if (!cameraRef.current) {
       Alert.alert('Câmera não encontrada', 'Não há câmera disponível no dispositivo.');
       return;
     }
-
+  
     const photo = await cameraRef.current.takePictureAsync();
-
+  
     if (photo) {
       savePhotoToGallery(photo.uri);
       evaluatePhoto(photo.uri);
     }
-  };
+  };  
 
-  const savePhotoToGallery = async () => {
+  const savePhotoToGallery = async (photoUri) => {
     try {
       const asset = await MediaLibrary.createAssetAsync(photoUri);
       await MediaLibrary.createAlbumAsync('Color Recognition', asset, false);
@@ -47,41 +45,13 @@ const CameraScreen = () => {
       console.log(error);
       Alert.alert('Erro ao salvar a foto', 'Ocorreu um erro ao salvar a foto na galeria.');
     }
-  };
+  };  
 
   const evaluatePhoto = async () => {
     // TODO: Implemente o código para avaliar a cor da imagem usando o modelo de rede neural treinado
   };
 
   return (
-    // <View style={styles.container}>
-    //   {!showCamera ? (
-    //     <RegisterPatientScreenList
-    //       onPatientSelected={() => setShowCamera(true)}
-    //     />
-    //   ) : (
-    //     hasCameraPermission ? (
-    //       <Camera
-    //         style={styles.container}
-    //         ref={(ref) => {
-    //           cameraRef.current = ref;
-    //         }}
-    //       />
-    //     ) : (
-    //       <Text>Permissão da câmera não concedida</Text>
-    //     )
-    //   )}
-    //   <View>
-    //     <TouchableOpacity
-    //       style={styles.buttonContainer}
-    //       onPress={takePhoto}
-    //       disabled={!showCamera} // Desativar o botão se a câmera não estiver visível
-    //     >
-    //       <Text style={styles.buttonText}>Tirar Foto</Text>
-    //     </TouchableOpacity>
-    //   </View>
-    // </View>
-
     <View style={styles.container}>
       {hasCameraPermission ? (
         <Camera
@@ -98,7 +68,7 @@ const CameraScreen = () => {
           style={styles.buttonContainer}
           onPress={takePhoto}
         >
-          <Text style={styles.buttonText}>Abrir Câmera</Text>
+          <Text style={styles.buttonText}>Salvar</Text>
         </TouchableOpacity>
       </View>
     </View>

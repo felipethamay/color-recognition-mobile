@@ -40,11 +40,6 @@ export const styles = StyleSheet.create({
   checkbox: {
     width: 20,
     height: 20,
-    borderWidth: 2,
-    borderColor: '#a75a00',
-    borderRadius: 4,
-    justifyContent: 'center',
-    alignItems: 'center',
     marginRight: 8,
   },
   checkboxChecked: {

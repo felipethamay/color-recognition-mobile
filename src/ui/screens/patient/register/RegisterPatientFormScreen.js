@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, ScrollView, Text } from 'react-native';
-import { CheckBox } from '@react-native-community/checkbox';
+import { CheckBox } from 'react-native-elements';
 import { Input, Button } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -116,15 +116,8 @@ const RegisterPatientFormScreen = () => {
       navigation.navigate('Home');
     } catch (error) {
       console.error("Error during form submission:", error);
-      // Toast.show({
-      //   type: 'error',
-      //   text1: 'Ocorreu um erro ao cadastrar',
-      //   visibilityTime: 2000,
-      //   autoHide: true,
-      // });
     }
   };
-
 
   return (
     <ScrollView style={styles.container}>
@@ -432,6 +425,7 @@ const RegisterPatientFormScreen = () => {
         <Text>Alergia</Text>
       </View>
       <Button title="Cadastrar" onPress={handleFormSubmit} />
+      <View style={styles.space}></View>
     </ScrollView>
   );
 };
