@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Image, TouchableOpacity, Text } from 'react-native';
+import { View, Image, TouchableOpacity, Text, SafeAreaView } from 'react-native';
 import { Camera } from 'expo-camera';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './HomeScreen.style';
@@ -30,43 +30,53 @@ const HomeScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Image
-        source={require('./../../../../assets/logo-noname.png')}
+        source={require('./../../../../assets/logo.png')}
         style={styles.image}
       />
-      <View style={styles.button}>
-        <TouchableOpacity
-          style={styles.buttonContainer}
-          onPress={handleOpenForm}
-        >
-          <Text style={styles.buttonText}>Cadastrar paciente</Text>
-        </TouchableOpacity>
+      <View style={styles.gridContainer}>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={handleOpenForm}>
+            <Image
+              source={require('./../../../../assets/register.png')}
+              style={styles.buttonImage}
+            />
+          </TouchableOpacity>
+          <Text style={styles.buttonText}>Cadastrar</Text>
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={handleOpenCamera}>
+            <Image
+              source={require('./../../../../assets/exam.png')}
+              style={styles.buttonImage}
+            />
+          </TouchableOpacity>
+          <Text style={styles.buttonText}>Exame</Text>
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button}>
+            <Image
+              source={require('./../../../../assets/results.png')}
+              style={styles.buttonImage}
+            />
+          </TouchableOpacity>
+          <Text style={styles.buttonText}>Resultado</Text>
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button}>
+            <Image
+              source={require('./../../../../assets/info.png')}
+              style={styles.buttonImage}
+            />
+          </TouchableOpacity>
+          <Text style={styles.buttonText}>+ Mais</Text>
+        </View>
       </View>
-      <View style={styles.button}>
-        <TouchableOpacity
-          style={styles.buttonContainer}
-          onPress={handleOpenList}
-        >
-          <Text style={styles.buttonText}>Listar paciente</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.button}>
-        <TouchableOpacity
-          style={styles.buttonContainer}
-          onPress={handleOpenCamera}
-        >
-          <Text style={styles.buttonText}>Abrir Câmera</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.button}>
-        <TouchableOpacity
-          style={styles.buttonContainer}
-        >
-          <Text style={styles.buttonText}>Visualizar resultados</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

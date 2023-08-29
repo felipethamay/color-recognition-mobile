@@ -3,26 +3,44 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fcf5ed',
   },
-  button: {
-    marginBottom: 10,
-    width: '80%',
+  gridContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    marginTop: 20,
   },
   buttonContainer: {
-    backgroundColor: '#a75a00',
-    padding: 10,
-    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  button: {
+    width: 80,
+    height: 80,
+    backgroundColor: '#ffff',
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 15,
+    marginRight: 15,
+  },
+  buttonImage: {
+    width: 40,
+    height: 40,
   },
   buttonText: {
-    color: 'white',
+    marginTop: 5,
+    fontSize: 16,
+    fontWeight: 'bold',
     textAlign: 'center',
-    textTransform: 'uppercase'
   },
   image: {
-    width: 100,
-    height: 100,
-    margin: 20,
+    width: 220,
+    height: 220,
+    margin: 10,
   },
 });
