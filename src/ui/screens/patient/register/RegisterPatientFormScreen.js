@@ -13,6 +13,7 @@ const RegisterPatientFormScreen = () => {
   const navigation = useNavigation();
 
   const [formData, setFormData] = useState({ /* initial form data */ });
+  const [id, setId] = useState(0);
   const [dispneia, setDispneia] = useState(false);
   const [doencaDoPulmao, setDoencaDoPulmao] = useState(false);
   const [asma, setAsma] = useState(false);
@@ -50,7 +51,15 @@ const RegisterPatientFormScreen = () => {
 
   const handleFormSubmit = async () => {
     try {
+      const savedData = await AsyncStorage.getItem('cadastros');
+      const cadastros = savedData ? JSON.parse(savedData) : [];
+
+      const lastId = cadastros.reduce((maxId, cadastro) => Math.max(maxId, cadastro.id), 0);
+
+      const newId = lastId + 1;
+
       const formDataWithCheckboxes = {
+        id: newId,
         ...formData,
         dispneia: dispneia,
         doencaDoPulmao: doencaDoPulmao,
@@ -81,8 +90,6 @@ const RegisterPatientFormScreen = () => {
         alergiaFamiliares: alergiaFamiliares,
       };
 
-      const savedData = await AsyncStorage.getItem('cadastros');
-      const cadastros = savedData ? JSON.parse(savedData) : [];
       cadastros.push(formDataWithCheckboxes);
       await AsyncStorage.setItem('cadastros', JSON.stringify(cadastros));
 
@@ -418,10 +425,10 @@ const RegisterPatientFormScreen = () => {
         <Text>Alergia</Text>
       </View>
       <Button buttonStyle={styles.button} title="CADASTRAR" onPress={handleFormSubmit} />
-      <View style={theme.space}></View>
+      <View style={theme.space} />
+      <View style={theme.space} />
     </ScrollView >
   );
 };
-
 
 export default RegisterPatientFormScreen;

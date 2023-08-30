@@ -21,12 +21,16 @@ const HomeScreen = () => {
     navigation.navigate('Form');
   };
 
-  const handleOpenList = () => {
-    navigation.navigate('List')
-  }
+  const handleOpenExam = () => {
+    navigation.navigate('Exam');
+  };
 
-  const handleOpenCamera = () => {
-    navigation.navigate('Camera');
+  const handleOpenResults = () => {
+    navigation.navigate('Results');
+  };
+
+  const handleOpenAbout = () => {
+    navigation.navigate('About');
   };
 
   return (
@@ -46,18 +50,8 @@ const HomeScreen = () => {
           <Text style={styles.buttonText}>Cadastrar</Text>
         </View>
 
-        {/* <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={handleOpenList}>
-            <Image
-              source={require('./../../../../assets/register.png')}
-              style={styles.buttonImage}
-            />
-          </TouchableOpacity>
-          <Text style={styles.buttonText}>Listar</Text>
-        </View> */}
-
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={handleOpenCamera}>
+          <TouchableOpacity style={styles.button} onPress={handleOpenExam}>
             <Image
               source={require('./../../../../assets/exam.png')}
               style={styles.buttonImage}
@@ -67,7 +61,7 @@ const HomeScreen = () => {
         </View>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={handleOpenResults}>
             <Image
               source={require('./../../../../assets/results.png')}
               style={styles.buttonImage}
@@ -77,7 +71,7 @@ const HomeScreen = () => {
         </View>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={handleOpenAbout}>
             <Image
               source={require('./../../../../assets/info.png')}
               style={styles.buttonImage}
