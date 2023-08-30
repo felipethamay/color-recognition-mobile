@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text } from 'react-native';
-import { CheckBox } from 'react-native-elements';
+import { View, ScrollView, Text, CheckBox } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
+import { useContext } from 'react';
+import { ThemeContext } from './../../../../contexts/ThemeContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from './RegisterPatientFormScreen.style'
 
 const RegisterPatientFormScreen = () => {
+  const theme = useContext(ThemeContext);
   const navigation = useNavigation();
 
   const [formData, setFormData] = useState({ /* initial form data */ });
@@ -120,313 +122,333 @@ const RegisterPatientFormScreen = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.heading}>1. DADOS PESSOAIS</Text>
+    <ScrollView style={theme.container}>
+      <Text style={theme.heading}>1. DADOS PESSOAIS</Text>
       <Input
-        style={styles.input}
-        label="Nome"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Nome"
         onChangeText={(value) => handleInputChange('nome', value)}
         value={formData.nome} />
       <Input
-        style={styles.input}
-        label="Rg"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Rg"
         onChangeText={(value) => handleInputChange('rg', value)}
         value={formData.rg} />
       <Input
-        style={styles.input}
-        label="Orgão Exp."
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Orgão Exp."
         value={formData.orgaoExp}
         onChangeText={(value) => handleInputChange('orgaoExp', value)} />
       <Input
-        style={styles.input}
-        label="CPF"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="CPF"
         value={formData.cpf}
         onChangeText={(value) => handleInputChange('cpf', value)} />
       <Input
-        style={styles.input}
-        label="Estado Civil"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Estado Civil"
         value={formData.estadoCivil}
         onChangeText={(value) => handleInputChange('estadoCivil', value)} />
       <Input
-        style={styles.input}
-        label="Sexo"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Sexo"
         value={formData.sexo}
         onChangeText={(value) => handleInputChange('sexo', value)} />
       <Input
-        style={styles.input}
-        label="Cor"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Cor"
         value={formData.cor}
         onChangeText={(value) => handleInputChange('cor', value)} />
       <Input
-        style={styles.input}
-        label="Data de Nascimento"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Data de Nascimento"
         value={formData.dataDeNascimento}
         onChangeText={(value) => handleInputChange('dataDeNascimento', value)} />
       <Input
-        style={styles.input}
-        label="Nacionalidade"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Nacionalidade"
         value={formData.nacionalidade}
         onChangeText={(value) => handleInputChange('nacionalidade', value)} />
       <Input
-        style={styles.input}
-        label="Naturalidade"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Naturalidade"
         value={formData.naturalidade}
         onChangeText={(value) => handleInputChange('naturalidade', value)} />
       <Input
-        style={styles.input}
-        label="Estado"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Estado"
         value={formData.estado}
         onChangeText={(value) => handleInputChange('estado', value)} />
       <Input
-        style={styles.input}
-        label="Profissão/Ocupação"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Profissão/Ocupação"
         value={formData.profissao}
         onChangeText={(value) => handleInputChange('profissao', value)} />
       <Input
-        style={styles.input}
-        label="Grau de instrução"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Grau de instrução"
         value={formData.grauDeInstrucao}
         onChangeText={(value) => handleInputChange('grauDeInstrucao', value)} />
       <Input
-        style={styles.input}
-        label="Logradouro"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Logradouro"
         value={formData.logradouro}
         onChangeText={(value) => handleInputChange('logradouro', value)} />
       <Input
-        style={styles.input}
-        label="Número"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Número"
         value={formData.numero}
         onChangeText={(value) => handleInputChange('numero', value)} />
       <Input
-        style={styles.input}
-        label="Bairro"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Bairro"
         value={formData.bairro}
         onChangeText={(value) => handleInputChange('bairro', value)} />
       <Input
-        style={styles.input}
-        label="Cidade"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Cidade"
         value={formData.cidade}
         onChangeText={(value) => handleInputChange('cidade', value)} />
       <Input
-        style={styles.input}
-        label="Estado"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Estado"
         value={formData.estadoCidade}
         onChangeText={(value) => handleInputChange('estadoCidade', value)} />
       <Input
-        style={styles.input}
-        label="E-mail"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="E-mail"
         value={formData.email}
         onChangeText={(value) => handleInputChange('email', value)} />
       <Input
-        style={styles.input}
-        label="DDD"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="DDD"
         value={formData.ddd}
         onChangeText={(value) => handleInputChange('ddd', value)} />
       <Input
-        style={styles.input}
-        label="Fone"
+        inputContainerStyle={theme.customInputContainer}
+        style={theme.input}
+        placeholder="Fone"
         value={formData.fone}
         onChangeText={(value) => handleInputChange('Fone', value)} />
-      <View style={styles.space} />
-      <Text style={styles.heading}>2. ANAMNESE - SOFREU OU SOFRE DAS DOENÇAS ABAIXO </Text>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.space} />
+      <Text style={theme.heading}>2. ANAMNESE - SOFREU OU SOFRE DAS DOENÇAS ABAIXO </Text>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={dispneia}
           onValueChange={(value) => setDispneia(value)} />
         <Text>Dispineia (falta de ar)</Text>
       </View>
-
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={doencaDoPulmao}
           onValueChange={(value) => setDoencaDoPulmao(value)} />
         <Text>Doença do pulmão</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={asma}
           onValueChange={(value) => setAsma(value)} />
         <Text>Asma</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={tuberculose}
           onValueChange={(value) => setTuberculose(value)} />
         <Text>Tuberculos</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={bronquite}
           onValueChange={(value) => setBronquite(value)} />
         <Text>Bronquite</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={doencaDeEstomago}
           onValueChange={(value) => setDoencaDeEstomago(value)} />
         <Text>Doença do estômago</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={doencaDeFigado}
           onValueChange={(value) => setDoencaDeFigado(value)} />
         <Text>Doença do fígado</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={doresNosRins}
           onValueChange={(value) => setDoresNosRins(value)} />
         <Text>Dores nos rins</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={cefaleias}
           onValueChange={(value) => setCefaleias(value)} />
         <Text>Cefaleias</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
 
           value={diabetes}
           onValueChange={(value) => setDiabetes(value)} />
         <Text>Diabetes</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
 
           value={alergias}
           onValueChange={(value) => setAlergias(value)} />
         <Text>Alergias</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={doencasDoCoracao}
           onValueChange={(value) => setDoencasDoCoracao(value)} />
         <Text>Doenças do Coração</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={palpitacao}
           onValueChange={(value) => setPalpitacao(value)} />
         <Text>Palpitação</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
 
           value={infarto}
           onValueChange={(value) => setInfarto(value)} />
         <Text>Infarto</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={hipertensaoArterial}
           onValueChange={(value) => setHipertensaoArterial(value)} />
         <Text>Hipertenção arterial</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={hernia}
           onValueChange={(value) => setHernia(value)} />
         <Text>Hérnia</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={outras}
           onValueChange={(value) => setOutras(value)} />
         <Text>Outras</Text>
       </View>
-      <View style={styles.space} />
-      <Text style={styles.heading}>3. ANTECEDENTES FAMILIARES</Text>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.space} />
+      <Text style={theme.heading}>3. ANTECEDENTES FAMILIARES</Text>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={diabetesFamiliares}
           onValueChange={(value) => setDiabetesFamiliares(value)} />
         <Text>Diabetess</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={doencasDoCoracaoFamiliares}
           onValueChange={(value) => setDoencasDoCoracaoFamiliares(value)} />
         <Text>Doenças do coração</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={hipertensaoArterialFamiliares}
           onValueChange={(value) => setHipertensaoArterialFamiliares(value)} />
         <Text>Hipertenção arterial</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={cancerFamiliares}
           onValueChange={(value) => setCancerFamiliares(value)} />
         <Text>Câncer</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={depressaoFamiliares}
           onValueChange={(value) => setDepressaoFamiliares(value)} />
         <Text>Depressão</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={surdezFamiliares}
           onValueChange={(value) => setSurdezFamiliares(value)} />
         <Text>Surdez</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={alcoolismoFamiliares}
           onValueChange={(value) => setAlcoolismoFamiliares(value)} />
         <Text>Alcoolismo</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={tuberculosePulmonarFamiliares}
           onValueChange={(value) => setTuberculosePulmonarFamiliares(value)} />
         <Text>Tuberculose</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={asmaFamiliares}
           onValueChange={(value) => setAsmaFamiliares(value)} />
         <Text>Asma</Text>
       </View>
-      <View style={styles.checkboxContainer}>
+      <View style={theme.checkboxContainer}>
         <CheckBox
-          style={styles.checkbox}
+          style={theme.checkbox}
           value={alergiaFamiliares}
           onValueChange={(value) => setAlergiaFamiliares(value)} />
         <Text>Alergia</Text>
       </View>
-      <Button title="Cadastrar" onPress={handleFormSubmit} />
-      <View style={styles.space}></View>
-    </ScrollView>
+      <Button buttonStyle={styles.button} title="CADASTRAR" onPress={handleFormSubmit} />
+      <View style={theme.space}></View>
+    </ScrollView >
   );
 };
 

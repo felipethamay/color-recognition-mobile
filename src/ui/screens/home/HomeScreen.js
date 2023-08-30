@@ -46,6 +46,16 @@ const HomeScreen = () => {
           <Text style={styles.buttonText}>Cadastrar</Text>
         </View>
 
+        {/* <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={handleOpenList}>
+            <Image
+              source={require('./../../../../assets/register.png')}
+              style={styles.buttonImage}
+            />
+          </TouchableOpacity>
+          <Text style={styles.buttonText}>Listar</Text>
+        </View> */}
+
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={handleOpenCamera}>
             <Image
