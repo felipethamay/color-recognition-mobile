@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text, CheckBox } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { useContext } from 'react';
 import { ThemeContext } from './../../../../contexts/ThemeContext';
+import ToggleButton from './../../../components/ToggleButton/ToggleButton.component';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from './RegisterPatientFormScreen.style'
 
@@ -253,123 +254,103 @@ const RegisterPatientFormScreen = () => {
       <View style={theme.space} />
       <Text style={theme.heading}>2. ANAMNESE - SOFREU OU SOFRE DAS DOENÇAS ABAIXO </Text>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={dispneia}
           onValueChange={(value) => setDispneia(value)} />
         <Text>Dispineia (falta de ar)</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={doencaDoPulmao}
           onValueChange={(value) => setDoencaDoPulmao(value)} />
         <Text>Doença do pulmão</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={asma}
           onValueChange={(value) => setAsma(value)} />
         <Text>Asma</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={tuberculose}
           onValueChange={(value) => setTuberculose(value)} />
         <Text>Tuberculos</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={bronquite}
           onValueChange={(value) => setBronquite(value)} />
         <Text>Bronquite</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={doencaDeEstomago}
           onValueChange={(value) => setDoencaDeEstomago(value)} />
         <Text>Doença do estômago</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={doencaDeFigado}
           onValueChange={(value) => setDoencaDeFigado(value)} />
         <Text>Doença do fígado</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={doresNosRins}
           onValueChange={(value) => setDoresNosRins(value)} />
         <Text>Dores nos rins</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={cefaleias}
           onValueChange={(value) => setCefaleias(value)} />
         <Text>Cefaleias</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
-
+        <ToggleButton
           value={diabetes}
           onValueChange={(value) => setDiabetes(value)} />
         <Text>Diabetes</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
-
+        <ToggleButton
           value={alergias}
           onValueChange={(value) => setAlergias(value)} />
         <Text>Alergias</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={doencasDoCoracao}
           onValueChange={(value) => setDoencasDoCoracao(value)} />
         <Text>Doenças do Coração</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={palpitacao}
           onValueChange={(value) => setPalpitacao(value)} />
         <Text>Palpitação</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
-
+        <ToggleButton
           value={infarto}
           onValueChange={(value) => setInfarto(value)} />
         <Text>Infarto</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={hipertensaoArterial}
           onValueChange={(value) => setHipertensaoArterial(value)} />
         <Text>Hipertenção arterial</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={hernia}
           onValueChange={(value) => setHernia(value)} />
         <Text>Hérnia</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={outras}
           onValueChange={(value) => setOutras(value)} />
         <Text>Outras</Text>
@@ -377,71 +358,61 @@ const RegisterPatientFormScreen = () => {
       <View style={theme.space} />
       <Text style={theme.heading}>3. ANTECEDENTES FAMILIARES</Text>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={diabetesFamiliares}
           onValueChange={(value) => setDiabetesFamiliares(value)} />
         <Text>Diabetess</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={doencasDoCoracaoFamiliares}
           onValueChange={(value) => setDoencasDoCoracaoFamiliares(value)} />
         <Text>Doenças do coração</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={hipertensaoArterialFamiliares}
           onValueChange={(value) => setHipertensaoArterialFamiliares(value)} />
         <Text>Hipertenção arterial</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={cancerFamiliares}
           onValueChange={(value) => setCancerFamiliares(value)} />
         <Text>Câncer</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={depressaoFamiliares}
           onValueChange={(value) => setDepressaoFamiliares(value)} />
         <Text>Depressão</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={surdezFamiliares}
           onValueChange={(value) => setSurdezFamiliares(value)} />
         <Text>Surdez</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={alcoolismoFamiliares}
           onValueChange={(value) => setAlcoolismoFamiliares(value)} />
         <Text>Alcoolismo</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={tuberculosePulmonarFamiliares}
           onValueChange={(value) => setTuberculosePulmonarFamiliares(value)} />
         <Text>Tuberculose</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={asmaFamiliares}
           onValueChange={(value) => setAsmaFamiliares(value)} />
         <Text>Asma</Text>
       </View>
       <View style={theme.checkboxContainer}>
-        <CheckBox
-          style={theme.checkbox}
+        <ToggleButton
           value={alergiaFamiliares}
           onValueChange={(value) => setAlergiaFamiliares(value)} />
         <Text>Alergia</Text>

@@ -20,9 +20,6 @@ export const theme = {
     backgroundColor: '#ffff',
     borderRadius: 5,
     paddingHorizontal: 10,
-    marginTop: 5,
-    marginBottom: 10,
-    border: 'none',
     fontSize: 15
   },
   customInputContainer: {
