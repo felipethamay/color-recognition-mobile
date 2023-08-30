@@ -7,6 +7,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 50,
     backgroundColor: '#ffff',
-    borderRadius: 15,
+    borderRadius: 2,
   },
 });

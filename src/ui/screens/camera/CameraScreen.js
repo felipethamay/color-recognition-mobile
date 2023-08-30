@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, Alert, Text, TouchableOpacity } from 'react-native';
+import { View, Alert, Text, TouchableOpacity, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 import * as MediaLibrary from 'expo-media-library';
+import { Ionicons } from '@expo/vector-icons';
 import { styles } from './CameraScreen.style';
 
 const CameraScreen = () => {
@@ -22,19 +23,19 @@ const CameraScreen = () => {
       Alert.alert('Permissão necessária', 'A câmera não está disponível.');
       return;
     }
-  
+
     if (!cameraRef.current) {
       Alert.alert('Câmera não encontrada', 'Não há câmera disponível no dispositivo.');
       return;
     }
-  
+
     const photo = await cameraRef.current.takePictureAsync();
-  
+
     if (photo) {
       savePhotoToGallery(photo.uri);
       evaluatePhoto(photo.uri);
     }
-  };  
+  };
 
   const savePhotoToGallery = async (photoUri) => {
     try {
@@ -45,33 +46,37 @@ const CameraScreen = () => {
       console.log(error);
       Alert.alert('Erro ao salvar a foto', 'Ocorreu um erro ao salvar a foto na galeria.');
     }
-  };  
+  };
 
   const evaluatePhoto = async () => {
     // TODO: Implemente o código para avaliar a cor da imagem usando o modelo de rede neural treinado
   };
 
   return (
-    <View style={styles.container}>
-      {hasCameraPermission ? (
-        <Camera
-          style={styles.container}
-          ref={(ref) => {
-            cameraRef.current = ref;
-          }}
-        />
-      ) : (
-        <Text>Permissão da câmera não concedida</Text>
-      )}
-      <View>
-        <TouchableOpacity
-          style={styles.buttonContainer}
-          onPress={takePhoto}
-        >
-          <Text style={styles.buttonText}>Salvar</Text>
-        </TouchableOpacity>
+    <>
+      <View style={styles.container}>
+        <View style={styles.cameraContainer}>
+          {hasCameraPermission ? (
+            <Camera
+              style={styles.camera}
+              ref={(ref) => {
+                cameraRef.current = ref;
+              }} />
+          ) : (
+            <Text>Permissão da câmera não concedida</Text>
+          )}
+        </View>
+        <View style={styles.delimiter} />
       </View>
-    </View>
+      <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={takePhoto}>
+            <Image
+              source={require('./../../../../assets/diaphragm.png')}
+              style={styles.buttonImage}
+            />
+          </TouchableOpacity>
+        </View>
+    </>
   );
 };
 
