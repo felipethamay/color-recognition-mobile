@@ -4,7 +4,7 @@
     "slug": "color-recognition-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo-noname.png",
+    "icon": "./assets/logo-app.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo.png",
+        "foregroundImage": "./assets/logo-app.png",
         "backgroundColor": "#ffffff"
       },
       "permissions": [
@@ -31,10 +31,16 @@
         "MEDIA_LIBRARY",
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE"
-      ]
+      ],
+      "package": "com.felipethamay.colorrecognitionapp"
     },
     "web": {
       "favicon": "./assets/logo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "535aef16-c0b2-4e51-9b96-aeeb5af0ea20"
+      }
     }
   }
 }
