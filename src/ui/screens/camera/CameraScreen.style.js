@@ -16,6 +16,12 @@ export const styles = StyleSheet.create({
   camera: {
     flex: 1,
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+  },
   delimiter: {
     position: 'absolute',
     borderColor: '#ffff',
@@ -31,16 +37,26 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    width: 80,
-    height: 80,
-    borderRadius: 15,
-    justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 15,
-    marginRight: 15,
+    justifyContent: 'center',
+    padding: 10,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    marginTop: 10,
+  },
+  iconTextContainer: {
+    alignItems: 'center',
   },
   buttonImage: {
-    width: 70,
-    height: 70,
+    width: 40,
+    height: 40,
+    marginBottom: 8,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: '#333',
+    fontWeight: '500',
+    textAlign: 'center',
   },
 });
