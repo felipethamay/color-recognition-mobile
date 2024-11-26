@@ -1,109 +1,86 @@
-import * as tf from '@tensorflow/tfjs';
-import '@tensorflow/tfjs-react-native';
-import { bundleResourceIO } from '@tensorflow/tfjs-react-native';
 import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 import React, { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, Image, Text, TouchableOpacity, View } from 'react-native';
+import { classifyColor } from '../../../services/colorClassificationService';
 import { styles } from './CameraScreen.style';
 
 const CameraScreen = () => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
-  const [model, setModel] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const cameraRef = useRef(null);
 
   useEffect(() => {
-    const initializeTf = async () => {
-      setIsLoading(true);
-      console.log("Iniciando carregamento do modelo...");
-
-      await tf.ready();
-      console.log('TensorFlow.js inicializado');
-
-      const modelJson = require('../../../../assets/models/color_classifier_model.json');
-      try {
-        const loadedModel = await tf.loadLayersModel(bundleResourceIO(modelJson));
-        setModel(loadedModel);
-        setIsLoading(false);
-        console.log('Modelo carregado');
-      } catch (error) {
-        console.error("Erro ao carregar o modelo:", error);
-        setIsLoading(false);
-      }
-    };
-
     const requestCameraPermission = async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
       setHasCameraPermission(status === 'granted');
     };
-
     requestCameraPermission();
-    initializeTf();
   }, []);
 
   const takePhoto = async () => {
     if (cameraRef.current) {
-      const photo = await cameraRef.current.takePictureAsync({ base64: true });
-      if (model) {
-        evaluatePhoto(photo.uri);
-      } else {
-        Alert.alert('Atenção', 'Modelo ainda não carregado. Tente novamente em instantes.');
-        console.log("Modelo não carregado ainda.");
-      }
+      Alert.alert('Aguarde, estamos processando sua imagem!');
+
+      const photo = await cameraRef.current.takePictureAsync({
+        allowsEditing: true,
+        quality: 1,
+        base64: true,
+      });
+      await evaluatePhoto(photo.base64);
+      setIsLoading(true);
     }
   };
 
   const pickImageFromGallery = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
-      alert('Desculpe, precisamos de permissões para acessar a galeria');
+      Alert.alert('Desculpe, precisamos de permissões para acessar a galeria');
       return;
     }
 
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
       quality: 1,
+      base64: true,
     });
 
-    if (!result.canceled && model) {
-      evaluatePhoto(result.uri);
-    } else {
-      Alert.alert('Atenção', 'Modelo ainda não carregado. Tente novamente em instantes.');
-      console.log("Modelo não carregado ainda.");
+    if (!result.canceled) {
+      const { base64 } = result.assets[0];
+      await evaluatePhoto(base64);
     }
   };
 
-  const evaluatePhoto = async (photoUri) => {
-    if (!model) {
-      console.log('Modelo ainda não está carregado');
-      return;
-    }
-
+  const evaluatePhoto = async (base64Image) => {
+    setIsLoading(true);
     try {
-      // Carregar a imagem da URI diretamente
-      const imageTensor = await tf.browser.fromPixelsAsync({ uri: photoUri });
+      const result = await classifyColor(base64Image);
 
-      // Redimensionar a imagem para 224x224 (tamanho esperado pelo modelo)
-      const resizedImage = tf.image.resizeBilinear(imageTensor, [224, 224]);
+      const classes = {
+        0: '006 mgdL',
+        1: '010 mgdL',
+        2: '030 mgdL',
+        3: '042 mgdL',
+        4: '060 mgdL',
+        5: '120 mgdL',
+      };
 
-      // Normalizar a imagem para [0, 1]
-      const normalizedImage = resizedImage.div(tf.scalar(255));
+      const predictedClass = parseInt(result["Classe Prevista"], 10);
 
-      // Adicionar a dimensão de batch (formato [1, 224, 224, 3])
-      const batchedImage = normalizedImage.expandDims(0);
+      const classification = !isNaN(predictedClass) && classes.hasOwnProperty(predictedClass)
+        ? classes[predictedClass]
+        : 'Classe desconhecida';
 
-      // Fazer a predição
-      const prediction = model.predict(batchedImage);
+      Alert.alert(`Classificação: ${classification}`);
 
-      // Obter a classe predita (supondo que o modelo tenha uma saída de uma classe categórica)
-      const predictedColor = prediction.argMax(-1).dataSync()[0];
-
-      Alert.alert(`Cor identificada: ${predictedColor}`);
-      tf.dispose([imageTensor, resizedImage, normalizedImage, batchedImage, prediction]);
-
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
     } catch (error) {
-      console.error('Erro ao processar a imagem:', error);
+      Alert.alert('Erro', 'Não foi possível identificar a cor.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -117,7 +94,7 @@ const CameraScreen = () => {
         ) : isLoading ? (
           <View style={styles.loadingContainer}>
             <ActivityIndicator size="large" color="#a75a00" />
-            <Text>Carregando o modelo...</Text>
+            <Text>Processando...</Text>
           </View>
         ) : (
           <Camera style={styles.camera} ref={cameraRef} />
