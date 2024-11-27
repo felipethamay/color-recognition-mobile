@@ -10,7 +10,7 @@ export const classifyColor = async (imageBase64) => {
     name: 'image.png',
   };
 
-  formData.append('image', file);
+  formData.append('file', file);
 
   try {
     const response = await axios.post(`${API_BASE_URL}/color-classification/predict`, formData, {

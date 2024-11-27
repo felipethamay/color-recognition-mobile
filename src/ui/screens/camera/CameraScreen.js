@@ -66,7 +66,7 @@ const CameraScreen = () => {
         5: '120 mgdL',
       };
 
-      const predictedClass = parseInt(result["Classe Prevista"], 10);
+      const predictedClass = parseInt(result.predicted_class, 10);
 
       const classification = !isNaN(predictedClass) && classes.hasOwnProperty(predictedClass)
         ? classes[predictedClass]
