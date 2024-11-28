@@ -30,9 +30,11 @@
         "CAMERA_ROLL",
         "MEDIA_LIBRARY",
         "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE"
+        "WRITE_EXTERNAL_STORAGE",
+        "INTERNET"
       ],
-      "package": "com.felipethamay.colorrecognitionapp"
+      "package": "com.felipethamay.colorrecognitionapp",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/logo.png"

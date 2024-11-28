@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 import { styles } from './RegisterPatientScreenList.style';
 
 const RegisterPatientListScreen = ({ onSelect }) => {
   const [cadastros, setCadastros] = useState([]);
-  const [selectedPatient, setSelectedPatient] = useState(null);
+  const [selectedPatient, setSelectedPatient] = useState('');
 
   useEffect(() => {
     const fetchCadastros = async () => {
@@ -31,16 +31,17 @@ const RegisterPatientListScreen = ({ onSelect }) => {
   return (
     <View>
       {cadastros.length > 0 ? (
-        <Picker
+        <RNPickerSelect
           style={styles.picker}
-          selectedValue={selectedPatient}
           onValueChange={(itemValue) => handlePatientSelect(itemValue)}
-        >
-          <Picker.Item label="Selecione" value={null} />
-          {cadastros.map((item) => (
-            <Picker.Item key={item.id} label={item.nome} value={item.id} />
-          ))}
-        </Picker>
+          value={selectedPatient}
+          items={[
+            ...cadastros.map((item) => ({
+              label: item.nome,
+              value: item.id
+            }))
+          ]}
+        />
       ) : (
         <Text>No patients available.</Text>
       )}
